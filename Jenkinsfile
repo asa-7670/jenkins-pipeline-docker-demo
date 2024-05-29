@@ -5,5 +5,6 @@ pipeline{
         steps{
           sh 'docker build -t asa/jenkins-pipeline-docker-demo .'
         }
+      }
     }
 }
