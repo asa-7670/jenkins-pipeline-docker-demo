@@ -1,7 +1,7 @@
 pipeline{
     environment {
-        registry = "demo/jenkins-pipeline-doker-demo"
-        registryCredential = 'dockerhub_id'
+        registry = "asaidi/jenkins-pipeline-doker-demo"
+        registryCredential = 'cred_docker_hub_id'
         dockerImage = ''
     }
     agent any
