@@ -1,4 +1,9 @@
 pipeline{
+    environment {
+        registry = "asaidi/demos"
+        registryCredential = 'dockerhub_id'
+        dockerImage = ''
+    }
     agent any
     stages{
      stage('Checkout'){
@@ -9,17 +14,23 @@ pipeline{
      stage('Docker build image'){
         steps{
             script {
-                sh 'docker build -t demo/jenkins-pipeline-docker-demo .'
+                //sh 'docker build -t demo/jenkins-pipeline-docker-demo .'
+                dockerImage = docker.build registry + ":$BUILD_NUMBER"
             }
         }
       }
       stage('Docker Push image'){
         steps{
             script {
-                //sh 'docker push -t demo/jenkins-pipeline-docker-demo .'
-                echo 'push  to docket hub'
+                docker.withRegistry( '', registryCredential ) {
+                    dockerImage.push()
+                }
             }
-        }
       }
+    }
+    stage('Cleaning up') {
+        steps {
+            sh "docker rmi $registry:$BUILD_NUMBER"
+        }
     }
 }
