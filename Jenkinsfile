@@ -9,9 +9,7 @@ pipeline{
 	
 		stage('Checkout'){
 			steps{
-				git 
-					branch: 'main', 
-					url: 'https://github.com/asa-7670/jenkins-pipeline-docker-demo'
+				git branch: 'main', url: 'https://github.com/asa-7670/jenkins-pipeline-docker-demo'
 			}
 		}
 		stage('Docker build image'){
