@@ -1,6 +1,6 @@
 pipeline{
     environment {
-        registry = "asaidi/demos"
+        registry = "demo/jenkins-pipeline-doker-demo"
         registryCredential = 'dockerhub_id'
         dockerImage = ''
     }
